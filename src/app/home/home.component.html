@@ -1,0 +1,57 @@
+<!------------------- main slider --------------------->
+<app-main-slider></app-main-slider>
+<!------------------- cotegories --------------------->
+<div class="my-5 ">
+  <h2 class="fw-bold my-5 text-capitalize">main <span class="text-main">cotegories</span> </h2>
+  <div class="row gy-4 ">
+    <!-- owl-carousel - Slider -->
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let categories of categoriesArr">
+        <ng-template carouselSlide>
+            <img [src]="categories.image" height="400" class="w-100">
+            <h5 class="my-3 fw-bolder">
+              {{categories.name}}
+            </h5>
+        </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+    <!-- <div class="col-md-3" *ngFor="let categories of categoriesArr , let last = last">
+      <div class="bg-light rounded-3 overflow-hidden border text-center">
+        <img [src]="categories.image" class="w-100 imgStyle" alt="">
+        <h5 class="my-3 fw-bolder">
+          {{categories.name}}
+        </h5>
+      </div>
+      <div routerLink="/categories" *ngIf="last" class="d-flex justify-content-end my-2 me-2">
+        <i class="fa-solid fa-circle-chevron-right fs-4 text-main"></i>
+      </div>
+    </div> -->
+  </div>
+</div>
+<!------------------- products -------------------->
+<div class="my-5">
+  <h2 class="fw-bold my-5 text-capitalize">main <span class="text-main">products</span></h2>
+  <div class="row gy-4">
+    <div class="col-md-3" *ngFor="let product of productsDataArr ,let last = last">
+      <a [routerLink]="['/details',product._id]">
+        <div class="product p-3 rounded-3 overflow-hidden border">
+          <img [src]="product.imageCover" class="w-100 imgStyle" alt="">
+          <p class="text-main text-center"> {{product.category.name}} </p>
+          <h4 class="text-center">
+            {{product.title.split(' ').slice(0,2).join(' ')}}
+          </h4>
+          <div class="d-flex justify-content-between">
+            <span>{{product.price}} EGP</span>
+            <span>
+              <i class="fa-solid fa-star rating-color"></i> {{product.ratingsQuantity}}
+            </span>
+          </div>
+          <button class="btn bg-main text-capitalize w-100 text-light">add +</button>
+          </div>
+      </a>
+      <!-- <div routerLink="/products" *ngIf="last" class="d-flex justify-content-end my-2 me-2">
+        <i class="fa-solid fa-circle-chevron-right fs-4 text-main"></i>
+      </div> -->
+    </div>
+  </div>
+</div>
