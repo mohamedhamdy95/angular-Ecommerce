@@ -1,0 +1,13 @@
+<h3>checkout works!</h3>
+
+<div class="container">
+    <form [formGroup]="payment" (ngSubmit)="onlinePayment(payment)" class="w-75 m-auto py-5">
+        <label for="" class="mb-2">details</label>
+        <input type="text" class="form-control mb-2" formControlName="details" name="" id="">
+        <label for="" class="mb-2">city</label>
+        <input type="text" class="form-control mb-2" formControlName="city" name="" id="">
+        <label for="" class="mb-2">phone</label>
+        <input type="tel" class="form-control mb-2" formControlName="phone" name="" id="">
+        <button class="btn btn-outline-success">Pay</button>
+    </form>
+</div>

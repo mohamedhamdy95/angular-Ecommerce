@@ -12,6 +12,8 @@ import { SignupComponent } from './signup/signup.component';
 import { ProductDeetailsComponent } from './product-deetails/product-deetails.component';
 import { authGuard } from './auth.guard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { MycartComponent } from './mycart/mycart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -23,6 +25,8 @@ const routes: Routes = [
 {path:'details/:id' ,canActivate:[authGuard],  component:ProductDeetailsComponent , title:"Details"},
 {path:'wishlist' ,canActivate:[authGuard],  component:WishlistComponent , title:"wishlist"},
 {path:'profile' ,canActivate:[authGuard],  component:ProfileComponent , title:"profile"},
+{path:'mycart' ,canActivate:[authGuard],  component:MycartComponent , title:"My Cart"},
+{path:'chockout' ,canActivate:[authGuard],  component:CheckoutComponent , title:"Chock Out"},
 {path:'signin' , component:SigninComponent , title:"signin"},
 {path:'signup' , component:SignupComponent , title:"signup"},
 {path:'forgotpassword' , component:ForgotPasswordComponent , title:"Forgotpassword"},

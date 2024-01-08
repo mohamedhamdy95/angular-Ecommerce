@@ -1,1 +1,25 @@
-<p>cart!</p>
+<div class="container bg-main-light m-5 p-5">
+    <h2 class="fw-bold my-2 text-capitalize">my <span class="text-main">cart</span> </h2>
+    <h4 class="my-3">total cart price: <span class="text-main">{{cartDetails?.totalCartPrice}}</span></h4>
+    <div *ngFor="let product of cartDetails.products">
+        <div class="row p-3 border-bottom" *ngIf="product.count > 0">
+            <div class="col-md-1">
+                <img [src]="product.product.imageCover" class="w-100">
+            </div>
+            <div class="d-flex align-items-center justify-content-between col-md-11">
+                <div>        
+                    <h4>{{product.product.title}}</h4>
+                    <p class="text-main">{{product.price}} EGP</p>
+                    <p>{{product.product.category.name}}</p>
+                    <button (click)="removeItem(product.product._id)" class="btn btn-outline-danger">Delete <i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button (click)="updateItems(product.product._id,product.count+1)" class="btn btn-outline-primary">+</button>
+                    <span class="px-2 text-main">{{product.count}}</span>
+                    <button (click)="updateItems(product.product._id,product.count-1)" class="btn btn-outline-primary">-</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-outline-success mt-2" routerLink="/chockout">Check out</button>
+</div>

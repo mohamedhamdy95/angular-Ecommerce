@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../service/cart.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -8,12 +10,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MycartComponent implements OnInit {
 cartDetails:any
-constructor(){
+constructor(private _CartService:CartService){}
+ngOnInit(): void {
+  this.getCart();
 }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+getCart(){
+  this._CartService.getCartItems().subscribe({
+    next:(respons)=>{
+      this.cartDetails =respons.data 
+      console.log(this.cartDetails.products)
+    },
+    error:(err)=>{console.log(err)}
+  })
+}
+
+removeItem(productId:string){
+  this._CartService.daleteCartItems(productId).subscribe({
+    next:(respons)=>{
+      Swal.fire({
+        icon: "error",
+        title: "item deleted successfly",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.cartDetails = respons.data;
+      // this.getCart();
+      console.log(respons)},
+    error:(err)=>{console.log(err)},
+    complete:()=>{}
+  })
+}
+
+// ****** update cart items *****
+updateItems(id:string,count:number){
+  this._CartService.updateCartItems(id,count).subscribe({
+    next:(respons)=>{
+      this.cartDetails = respons.data;
+      console.log(respons)},
+    error:(err)=>{console.log(err)},
+    complete:()=>{}
+  })
   }
 
-
-
 }
+
+

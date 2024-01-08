@@ -33,8 +33,9 @@
   <h2 class="fw-bold my-5 text-capitalize">main <span class="text-main">products</span></h2>
   <div class="row gy-4">
     <div class="col-md-3" *ngFor="let product of productsDataArr ,let last = last">
-      <a [routerLink]="['/details',product._id]">
+    
         <div class="product p-3 rounded-3 overflow-hidden border">
+          <a [routerLink]="['/details',product._id]">
           <img [src]="product.imageCover" class="w-100 imgStyle" alt="">
           <p class="text-main text-center"> {{product.category.name}} </p>
           <h4 class="text-center">
@@ -46,9 +47,9 @@
               <i class="fa-solid fa-star rating-color"></i> {{product.ratingsQuantity}}
             </span>
           </div>
-          <button class="btn bg-main text-capitalize w-100 text-light">add +</button>
+        </a>
+          <button class="btn bg-main text-capitalize w-100 text-light" (click)="addToCart(product._id)">add +</button>
           </div>
-      </a>
       <!-- <div routerLink="/products" *ngIf="last" class="d-flex justify-content-end my-2 me-2">
         <i class="fa-solid fa-circle-chevron-right fs-4 text-main"></i>
       </div> -->
